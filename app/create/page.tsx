@@ -59,10 +59,12 @@ export default function page() {
 						<ArrowLeft /> Previous
 					</Button>
 				)}
-				<Button onClick={() => setStep((prev) => prev + 1)}>
-					{" "}
-					<ArrowRight /> Continue
-				</Button>
+				{step < 6 && (
+					<Button onClick={() => setStep((prev) => prev + 1)}>
+						{" "}
+						<ArrowRight /> Continue
+					</Button>
+				)}
 			</div>
 		</div>
 	);

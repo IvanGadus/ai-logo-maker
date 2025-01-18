@@ -41,5 +41,26 @@ export const AIDesignIdea = model.startChat({
 	],
 });
 
+export const AILogoPrompt = model.startChat({
+	generationConfig,
+	history: [
+		{
+			role: "user",
+			parts: [
+				{
+					text: "Generate a text prompt to create Logo for Logo Title/Brand name : sdffdf,with description: fsd, with Color combination of Sunset Warmth, also include the Vintage Logo Designs With Text & Icon and include Vintage Logo Designs With Text & Icon design idea and Referring to this Logo Prompt:Design a collection of vintage-inspired logos with a hand-drawn, artistic style. Incorporate a variety of themes, including food, animals, characters, and unique brand elements. Each logo should feature bold typography, intricate details, and a retro aesthetic that is versatile and suitable for diverse brands or businesses.  Give me result in JSON portal with prompt field only",
+				},
+			],
+		},
+		{
+			role: "model",
+			parts: [
+				{
+					text: '```json\n{\n  "prompt": "Create a vintage logo design for the brand \\"sdffdf\\", described as \\"fsd\\". Use a color combination evoking \\"Sunset Warmth\\". The design should feature a hand-drawn, artistic style with bold typography and intricate details. Incorporate both text and an icon within the logo, reflecting a retro aesthetic. Referencing design idea : Design a collection of vintage-inspired logos with a hand-drawn, artistic style. Incorporate a variety of themes, including food, animals, characters, and unique brand elements. Each logo should feature bold typography, intricate details, and a retro aesthetic that is versatile and suitable for diverse brands or businesses."\n}\n```\n',
+				},
+			],
+		},
+	],
+});
 // const result = await chatSession.sendMessage("INSERT_INPUT_HERE");
 // console.log(result.response.text());

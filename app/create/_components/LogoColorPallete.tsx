@@ -32,10 +32,10 @@ export default function LogoColorPallete({
 			<div className="grid grid-cols-2 md:grid-cols-3 gap-5 mt-5">
 				{Colors.map((pallete, index) => (
 					<div
-						className={`flex  p-1 cursor-pointer ${
+						className={`flex hover:outline outline-2 outline-offset-2 outline-primary cursor-pointer ${
 							(selectedOption === pallete.name ||
 								formData?.color === pallete.name) &&
-							"border-2 rounded-lg border-primary"
+							"outline"
 						}`}
 						key={index}
 					>

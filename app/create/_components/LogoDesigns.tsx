@@ -35,10 +35,10 @@ export default function LogoDesigns({
 			<div className="grid grid-cols-2 md:grid-cols-3 gap-10 mt-10">
 				{LogoDesign.map((design, index) => (
 					<div
-						className={`p-1 hover:border-2 border-primary rounded-xl cursor-pointer ${
+						className={` hover:outline outline-2 outline-offset-2 outline-primary rounded-xl cursor-pointer ${
 							(selectedOption === design.title ||
 								formData?.design?.title === design.title) &&
-							"border-2 rounded-lg border-primary"
+							"outline"
 						}`}
 						key={index}
 						onClick={() => {
