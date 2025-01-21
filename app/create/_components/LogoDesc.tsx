@@ -14,12 +14,21 @@ type LogoDescProps = {
 			prompt: string;
 		};
 	};
+	setEmptyDesc: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export default function LogoDesc({
 	handleInputChange,
 	formData,
+	setEmptyDesc,
 }: LogoDescProps) {
+	const handleEmptyInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+		if (e.target.value === "") {
+			setEmptyDesc(true);
+		} else {
+			setEmptyDesc(false);
+		}
+	};
 	return (
 		<div className="my-10">
 			<HeadingDescription
@@ -29,8 +38,11 @@ export default function LogoDesc({
 			<input
 				className="p-4 border rounded-lg mt-5 w-full"
 				type="text"
-				placeholder={Lookup.InputTitlePlaceholder}
-				onChange={(e) => handleInputChange(e.target.value)}
+				placeholder={Lookup.LogoDescTitle}
+				onChange={(e) => {
+					handleInputChange(e.target.value);
+					handleEmptyInput(e);
+				}}
 				defaultValue={formData?.desc}
 			/>
 		</div>

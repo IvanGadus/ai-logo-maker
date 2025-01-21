@@ -1,5 +1,4 @@
 import React from "react";
-import LogoTitle from "./LogoTitle";
 
 type HeadingDescriptionProps = {
 	title: string;

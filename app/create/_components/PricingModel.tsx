@@ -4,13 +4,10 @@ import HeadingDescription from "./HeadingDescription";
 import Lookup from "@/app/_data/Lookup";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { SignInButton, SignOutButton, useUser } from "@clerk/nextjs";
+import { SignInButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
 type pricingModelProps = {
-	handleInputChange: (
-		value: string | { title: string; image: string; prompt: string }
-	) => void;
 	formData: {
 		desc?: string;
 		title?: string;
@@ -22,10 +19,7 @@ type pricingModelProps = {
 		};
 	};
 };
-export default function PricingModel({
-	handleInputChange,
-	formData,
-}: pricingModelProps) {
+export default function PricingModel({ formData }: pricingModelProps) {
 	const { user } = useUser();
 
 	useEffect(() => {
@@ -40,7 +34,7 @@ export default function PricingModel({
 				title={Lookup.LogoPricingModelTitle}
 				description={Lookup.LogoPricingModelDesc}
 			/>
-			<div className="grid grid-cols-1 md:grid-cols-1 gap-10 mt-5 w-max mx-auto">
+			<div className="grid grid-cols-1 md:grid-cols-1 gap-10 mt-5 sm:w-max mx-auto">
 				{Lookup.pricingOption.map((item, index) => (
 					<div
 						key={index}

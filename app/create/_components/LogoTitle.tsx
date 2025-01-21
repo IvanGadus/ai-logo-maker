@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeadingDescription from "./HeadingDescription";
 import Lookup from "@/app/_data/Lookup";
 import { useSearchParams } from "next/navigation";
@@ -17,20 +17,34 @@ type handleInputChangeProps = {
 			prompt: string;
 		};
 	};
+	setEmptyTitle: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
 export default function LogoTitle({
 	handleInputChange,
 	formData,
+	setEmptyTitle,
 }: handleInputChangeProps) {
-	const searchParam = useSearchParams();
-	const [title, setTitle] = React.useState(
-		searchParam?.get("title") || formData?.title
-	);
+	const searchParams = useSearchParams();
+	const search = searchParams.get("title");
+	const [title, setTitle] = useState(search || formData?.title);
+
+	const stableHandleInputChange = React.useRef(handleInputChange);
+	const stableSetEmptyTitle = React.useRef(setEmptyTitle);
 
 	useEffect(() => {
-		const title = searchParam?.get("title") ?? "";
-		handleInputChange(title);
-	}, []);
+		stableHandleInputChange.current = handleInputChange;
+		stableSetEmptyTitle.current = setEmptyTitle;
+	}, [handleInputChange, setEmptyTitle]);
+
+	useEffect(() => {
+		if (search !== null && search !== "") {
+			stableHandleInputChange.current(search ?? "");
+			stableSetEmptyTitle.current(false);
+		} else {
+			stableSetEmptyTitle.current(true);
+		}
+	}, [search]);
 
 	return (
 		<div className="my-10">
@@ -42,8 +56,13 @@ export default function LogoTitle({
 				className="p-4 border rounded-lg mt-5 w-full"
 				type="text"
 				placeholder={Lookup.InputTitlePlaceholder}
-				defaultValue={title}
-				onChange={(e) => handleInputChange(e.target.value)}
+				value={title}
+				onChange={(e) => {
+					const value = e.target.value;
+					setTitle(value);
+					handleInputChange(value);
+					setEmptyTitle(value === "");
+				}}
 			/>
 		</div>
 	);

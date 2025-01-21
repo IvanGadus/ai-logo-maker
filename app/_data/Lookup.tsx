@@ -1,9 +1,9 @@
-export default {
+const lookupContent = {
 	HeroHeading: "AI Logo Maker",
 	HeroSubheading: "Perfect Logos for Apps, Businesses, and Websites",
 	HeroDesc:
 		"Craft unique and professional logos effortlessly with AI-powered tools. Perfect for apps, businesses, websites and more! ",
-	InputTitlePlaceholder: "Enter your logo name",
+	InputTitlePlaceholder: "Enter logo name",
 	LogoTitle: "Logo Title",
 	LogoTitleDesc: "Add Your Business, App, or Website Name for a Custom Logo",
 	LogoDescTitle: " Describe Your Logo Vision",
@@ -49,3 +49,4 @@ export default {
 		// },
 	],
 };
+export default lookupContent;

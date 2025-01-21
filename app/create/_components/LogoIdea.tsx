@@ -29,29 +29,30 @@ export default function LogoIdea({
 	const [selectedOption, setSelectedOption] = useState("");
 
 	useEffect(() => {
-		generateLogoIdea();
-	}, []);
-	const generateLogoIdea = async () => {
-		setLoading(true);
-		const PROMPT = Prompt.DESIGN_IDEA_PROMPT.replace(
-			"{logoType}",
-			formData?.design?.title ?? ""
-		)
-			.replace("{logoTitle}", formData?.title ?? "")
-			.replace("{logoDesc}", formData.desc ?? "")
-			.replace("{logoPrompt}", formData?.design?.prompt ?? "");
+		const generateLogoIdea = async () => {
+			setLoading(true);
+			const PROMPT = Prompt.DESIGN_IDEA_PROMPT.replace(
+				"{logoType}",
+				formData?.design?.title ?? ""
+			)
+				.replace("{logoTitle}", formData?.title ?? "")
+				.replace("{logoDesc}", formData.desc ?? "")
+				.replace("{logoPrompt}", formData?.design?.prompt ?? "");
 
-		const result = await fetch("/api/ai-design-ideas", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ prompt: PROMPT }),
-		});
-		const data = await result.json();
-		setIdeas(data.ideas);
-		setLoading(false);
-	};
+			const result = await fetch("/api/ai-design-ideas", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ prompt: PROMPT }),
+			});
+			const data = await result.json();
+			setIdeas(data.ideas);
+			setLoading(false);
+		};
+
+		generateLogoIdea();
+	}, [formData?.design, formData?.title, formData?.desc]);
 
 	return (
 		<div className="my-10">
@@ -84,6 +85,7 @@ export default function LogoIdea({
 						onClick={() => {
 							setSelectedOption("Let AI select best idea");
 							handleInputChange("Let AI select best idea");
+							console.log(formData);
 						}}
 						className={`p-2 rounded-full border px-3 cursor-pointer hover:border-primary ${
 							selectedOption === "Let AI select best idea" && "border-primary"

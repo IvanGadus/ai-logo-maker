@@ -16,17 +16,19 @@ export default function Provider({ children }: { children: React.ReactNode }) {
 	const [userDetail, setUserDetail] = useState<userDetailType | null>(null);
 
 	useEffect(() => {
-		user && checkUserAuth();
+		const checkUserAuth = async () => {
+			const result = await axios.post("/api/users", {
+				userName: user?.fullName,
+				userEmail: user?.primaryEmailAddress?.emailAddress,
+			});
+			// console.log(result.data);
+			setUserDetail(result.data);
+		};
+		if (user) {
+			checkUserAuth();
+		}
 	}, [user]);
 
-	const checkUserAuth = async () => {
-		const result = await axios.post("/api/users", {
-			userName: user?.fullName,
-			userEmail: user?.primaryEmailAddress?.emailAddress,
-		});
-		// console.log(result.data);
-		setUserDetail(result.data);
-	};
 	return (
 		<div>
 			<UserDetailContext.Provider value={{ userDetail, setUserDetail }}>

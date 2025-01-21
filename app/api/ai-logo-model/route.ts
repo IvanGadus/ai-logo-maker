@@ -1,6 +1,5 @@
 import { AILogoPrompt } from "@/app/configs/AiModel";
 import { db } from "@/app/configs/FirebaseConfig";
-import axios from "axios";
 import { doc, setDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
 
@@ -28,19 +27,13 @@ export async function POST(req: Request) {
 			}
 		);
 
-		if (!response.ok) {
-			const error = await response.json();
-			console.error("Error from API:", error);
-			return null;
-		}
-
 		// Handling response
 
 		const arrayBuffer = await response.arrayBuffer();
 		const base64String = Buffer.from(arrayBuffer).toString("base64");
 
 		// Storing in Firestore
-		await setDoc(doc(db, "users", email, "logos,", Date.now().toString()), {
+		await setDoc(doc(db, "users", email, "logos", Date.now().toString()), {
 			image: `data:image/png;base64,${base64String}`,
 			title: title,
 			desc: desc,

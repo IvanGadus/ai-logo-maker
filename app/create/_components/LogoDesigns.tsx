@@ -32,7 +32,7 @@ export default function LogoDesigns({
 				description={Lookup.LogoDesignDesc}
 			/>
 
-			<div className="grid grid-cols-2 md:grid-cols-3 gap-10 mt-10">
+			<div className="grid grid-cols-2 md:grid-cols-3 md:gap-10 gap-5 mt-10">
 				{LogoDesign.map((design, index) => (
 					<div
 						className={` hover:outline outline-2 outline-offset-2 outline-primary rounded-xl cursor-pointer ${
