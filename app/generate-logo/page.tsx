@@ -69,13 +69,16 @@ export default function Page() {
 
 			try {
 				// throw new Error("Error from API");
-				const result = await axios.post("/api/ai-logo-model", {
-					prompt: PROMPT,
-					email: userDetail?.email,
-					title: formData?.title,
-					desc: formData?.desc,
-					timeout: 240000,
-				});
+				const result = await axios.post(
+					"/api/ai-logo-model",
+					{
+						prompt: PROMPT,
+						email: userDetail?.email,
+						title: formData?.title,
+						desc: formData?.desc,
+					},
+					{ timeout: 240000 }
+				);
 
 				//zobrazit vysledok v obrazku
 				setImgSrc(result.data.imageUrl);
