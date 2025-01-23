@@ -29,7 +29,7 @@ export default function Page() {
 
 	const handleInputChange = (field: string, value: string | object) => {
 		setFormData((prev) => ({ ...prev, [field]: value }));
-		console.log(formData);
+		// console.log(formData);
 	};
 
 	return (

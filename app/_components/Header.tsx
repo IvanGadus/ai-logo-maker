@@ -22,7 +22,9 @@ export default function Header() {
 						</Button>
 					)
 				) : (
-					<Button>Get started</Button>
+					<Link href={`/create?title=${""}`}>
+						<Button>Get started</Button>
+					</Link>
 				)}
 
 				<UserButton />
