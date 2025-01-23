@@ -22,6 +22,7 @@ const lookupContent = {
 	LogoPricingModelDesc: "Generate Unlimted Fast Logo with your fav model",
 	LoadingWaitDesc:
 		"✨ Please wait a moment while we work our magic to bring your logo to life.",
+	LoadingWaitDesc2: "✨ Be patient, this may take a few minutes.",
 	LoadingWaitTitle: "Your logo is being created",
 	pricingOption: [
 		{

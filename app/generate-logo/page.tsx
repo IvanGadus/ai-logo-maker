@@ -46,7 +46,7 @@ export default function Page() {
 			const storage = localStorage.getItem("formData");
 			if (storage) {
 				setFormData(JSON.parse(storage));
-				console.log(JSON.parse(storage));
+				// console.log(JSON.parse(storage));
 			}
 		}
 	}, [userDetail]);
@@ -107,10 +107,21 @@ export default function Page() {
 						alt="logo"
 					/>
 				) : error ? (
-					<h1 className="text-2xl text-primary font-bold">{error}</h1>
+					<div className="flex flex-col items-center gap-3">
+						<h1 className="text-2xl text-primary font-bold">{error}</h1>
+						<Button
+							onClick={() => {
+								setError(null);
+								window.location.reload();
+							}}
+						>
+							Try again
+						</Button>
+					</div>
 				) : (
-					<div className="flex flex-col items-center">
+					<div className="flex flex-col items-center gap-1 mt-2">
 						<p className="text-center">{Lookup.LoadingWaitDesc}</p>
+						<p className="text-center">{Lookup.LoadingWaitDesc2}</p>
 						<div className="loader mt-10 mb-10"></div>
 					</div>
 				)}
