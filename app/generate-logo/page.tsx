@@ -82,6 +82,7 @@ export default function Page() {
 				localStorage.removeItem("formData");
 			} catch (e) {
 				setError("Something went wrong. Please try again.");
+				console.log(e);
 				setLoading(false);
 				return NextResponse.json({ error: e });
 			}
