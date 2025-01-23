@@ -1,0 +1,6 @@
+[functions]
+directory = "netlify/functions"
+
+[[functions]]
+name = "ai-logo-model"
+schedule = "@background"
