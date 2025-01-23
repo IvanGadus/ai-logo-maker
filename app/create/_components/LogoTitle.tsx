@@ -27,7 +27,9 @@ export default function LogoTitle({
 }: handleInputChangeProps) {
 	const searchParams = useSearchParams();
 	const search = searchParams.get("title");
-	const [title, setTitle] = useState(search || formData?.title);
+	const [title, setTitle] = useState(
+		(search === "" ? formData?.title : search) ?? ""
+	);
 
 	const stableHandleInputChange = React.useRef(handleInputChange);
 	const stableSetEmptyTitle = React.useRef(setEmptyTitle);
@@ -42,7 +44,9 @@ export default function LogoTitle({
 			stableHandleInputChange.current(search ?? "");
 			stableSetEmptyTitle.current(false);
 		} else {
-			stableSetEmptyTitle.current(true);
+			if (!formData?.title) {
+				stableSetEmptyTitle.current(true);
+			}
 		}
 	}, [search]);
 
