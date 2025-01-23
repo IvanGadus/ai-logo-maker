@@ -74,6 +74,7 @@ export default function Page() {
 					email: userDetail?.email,
 					title: formData?.title,
 					desc: formData?.desc,
+					timeout: 240000,
 				});
 
 				//zobrazit vysledok v obrazku
